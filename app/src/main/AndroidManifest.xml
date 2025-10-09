@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Chạy màn nào để .MAIN VÀ .LAUNCHER bên trong Activity đó -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -12,14 +13,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTutorial">
         <activity
-            android:name=".features.lifecycle.LifecycleActivity"
-            android:exported="true">
+            android:name=".features.navigation.bundle.SecondaryBundleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.navigation.bundle.FirstBundleActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".features.navigation.intent.SecondaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.navigation.intent.FirstActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".features.lifecycle.LifecycleActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

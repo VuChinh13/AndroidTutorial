@@ -5,8 +5,34 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtutorial.databinding.ActivityLifecycleBinding
 
+/**
+ * ========================= VÒNG ĐỜI ACTIVITY (Android) =========================
+ *
+ * Tạo mới bình thường:
+ *   onCreate() -> onStart() -> onResume() -> [Activity chạy foreground]
+ *
+ * Rời app (Home / Recent) rồi quay lại:
+ *   Trạng thái:   onPause() -> onStop()
+ *   Quay lại: onRestart() -> onStart() -> onResume()
+ *
+ * Xoay màn hình / thay đổi cấu hình (recreate):
+ *   onPause() -> onSaveInstanceState() -> onStop() -> onDestroy()
+ *   -> onCreate(savedInstanceState) -> onStart() -> onRestoreInstanceState() -> onResume()
+ *
+ * Người dùng thoát hẳn (Back) hoặc finish():
+ *   onPause() -> onStop() -> onDestroy()
+ *   (Không khôi phục lại, savedInstanceState = null ở lần mở sau)
+ *
+ * Hệ thống thiếu RAM, kill process khi Activity đang ở background:
+ *   Có thể gọi onSaveInstanceState() trước rồi kill process (KHÔNG gọi onDestroy()).
+ *   Khi người dùng quay lại: Activity được tạo mới, nhận savedInstanceState trong onCreate().
+ *
+ * Ghi chú:
+ * - onCreate(): khởi tạo UI; có Bundle savedInstanceState để khôi phục trạng thái.
+ * - onSaveInstanceState(): chỉ lưu dữ liệu NHẸ/TẠM để khôi phục UI; không dùng cho dữ liệu lớn/lâu dài.
+ *
+ */
 class LifecycleActivity : AppCompatActivity() {
-
     private val tag = "LifecycleActivity"
     private lateinit var binding: ActivityLifecycleBinding
 
