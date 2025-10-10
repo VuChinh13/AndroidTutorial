@@ -46,7 +46,7 @@ class LifecycleActivity : AppCompatActivity() {
 
         val savedName = savedInstanceState?.getString("name_key")
         if (savedName != null) {
-            binding.editName.setText(savedName)
+            binding.etName.setText(savedName)
             Log.d(tag, "Khôi phục dữ liệu từ savedInstanceState: $savedName")
         }
     }
@@ -85,7 +85,7 @@ class LifecycleActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        val name = binding.editName.text.toString()
+        val name = binding.etName.text.toString()
         outState.putString("name_key", name)
         Log.d(tag, "onSaveInstanceState - Lưu dữ liệu: $name")
     }

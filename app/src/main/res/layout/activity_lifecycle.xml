@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:text="Nhập tên của bạn:"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/editName"
-        app:layout_constraintStart_toStartOf="@id/editName" />
+        app:layout_constraintBottom_toTopOf="@id/et_name"
+        app:layout_constraintStart_toStartOf="@id/et_name" />
 
     <EditText
-        android:id="@+id/editName"
+        android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tên của bạn"

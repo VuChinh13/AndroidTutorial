@@ -14,12 +14,12 @@
         android:text="Dữ liệu được truyền sang"
         android:textStyle="bold"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv"
-        app:layout_constraintEnd_toEndOf="@+id/tv"
-        app:layout_constraintStart_toStartOf="@+id/tv" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_content"
+        app:layout_constraintEnd_toEndOf="@+id/tv_content"
+        app:layout_constraintStart_toStartOf="@+id/tv_content" />
 
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"

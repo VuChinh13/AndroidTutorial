@@ -13,6 +13,7 @@ class SecondaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySecondaryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivitySecondaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,7 +30,7 @@ class SecondaryActivity : AppCompatActivity() {
             val message = getStringExtra("extra_message") ?: ""
             val tags = getStringArrayListExtra("extra_tags") ?: arrayListOf()
 
-            binding.tv.text = buildString {
+            binding.tvContent.text = buildString {
                 appendLine("SecondaryActivity")
                 appendLine("User: $user")
                 appendLine("Count: $count")

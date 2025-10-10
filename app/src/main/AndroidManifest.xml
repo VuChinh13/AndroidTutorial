@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Chạy màn nào để .MAIN VÀ .LAUNCHER bên trong Activity đó -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Chạy test nội dung nào thì cho intent-filter với 2 thuôc tính là .MAIN và .LAUNCHER-->
+
+    <!-- Android 13+ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -13,11 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTutorial">
         <activity
-            android:name=".features.navigation.bundle.SecondaryBundleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".features.navigation.bundle.FirstBundleActivity"
-            android:exported="true" >
+            android:name=".features.launchmode.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,11 +26,39 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".features.launchmode.SingleInstanceActivity"
+            android:exported="false"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".features.launchmode.SingleTaskActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".features.launchmode.SingleTopActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".features.launchmode.StandardActivity"
+            android:exported="false"
+            android:launchMode="standard" />
+        <activity
+            android:name=".features.navigation.activityresultlauncher.SecondaryResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.navigation.activityresultlauncher.FirstResultActivity"
+            android:exported="true" />
+        <activity
+            android:name=".features.navigation.bundle.SecondaryBundleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.navigation.bundle.FirstBundleActivity"
+            android:exported="false" />
+        <activity
             android:name=".features.navigation.intent.SecondaryActivity"
             android:exported="false" />
         <activity
             android:name=".features.navigation.intent.FirstActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".features.lifecycle.LifecycleActivity"
             android:exported="false" />

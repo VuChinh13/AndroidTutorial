@@ -17,6 +17,7 @@ class FirstBundleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityFirstBundleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,9 +39,10 @@ class FirstBundleActivity : AppCompatActivity() {
                     "extra_options" to optionsBundle
                 )
 
-                val secondaryIntent = Intent(this@FirstBundleActivity, SecondaryBundleActivity::class.java).apply {
-                    putExtras(extrasBundle)
-                }
+                val secondaryIntent =
+                    Intent(this@FirstBundleActivity, SecondaryBundleActivity::class.java).apply {
+                        putExtras(extrasBundle)
+                    }
                 startActivity(secondaryIntent)
             }
         }

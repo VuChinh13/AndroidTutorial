@@ -16,6 +16,7 @@ class SecondaryBundleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivitySecondaryBundleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -31,7 +32,7 @@ class SecondaryBundleActivity : AppCompatActivity() {
             val shouldShowDialog = optionsBundle?.getBoolean("showDialog") ?: false
             val accentColor = optionsBundle?.getString("accent").orEmpty()
 
-            binding.tv.text = buildString {
+            binding.tvContent.text = buildString {
                 appendLine("SecondaryBundleActivity")
                 appendLine("Count: $receivedCount")
                 appendLine("Message: $receivedMessage")
