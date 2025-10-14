@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.5"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Browse Stocks"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:textSize="70sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="0.8"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.35"
+            android:background="@drawable/bg_apple"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/imgApple"
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                app:srcCompat="@drawable/ic_apple" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtApple"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:gravity="bottom"
+                android:text="AAPL\n$ 364.11"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.65"
+            android:background="@drawable/bg_mcdonald"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/imgMcDonalds"
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                app:srcCompat="@drawable/ic_mcdonalds" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDonalds"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:gravity="bottom"
+                android:text="MCD\n$ 183.52"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1.7"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/bg_twitter"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/imgTwitter"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:srcCompat="@drawable/ic_tiwtter" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTwitter"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:gravity="bottom"
+                android:text="TWTR\n$ 30.87"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/bg_nike"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imgNike"
+                    android:layout_width="40dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.35"
+                    app:srcCompat="@drawable/ic_nike" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtNike"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.65"
+                    android:gravity="bottom"
+                    android:text="NKE\n$ 98.43"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/bg_paypal"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imgPaypal"
+                    android:layout_width="30dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    app:srcCompat="@drawable/ic_paypal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtPaypal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:gravity="bottom"
+                    android:text="PYPL\n$ 177.21"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_lyft"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/imgLyft"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            app:srcCompat="@drawable/ic_lyft" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtLyft"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:gravity="bottom"
+            android:text="LYFT\n$ 31.82"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.4"
+            android:background="@drawable/bg_aapl"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/imgAmazon"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                app:srcCompat="@drawable/ic_amazon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtAmazon"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:gravity="bottom"
+                android:text="AAPL\n$ 364.11"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:background="@drawable/bg_aapl1"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/imgIn"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                app:srcCompat="@drawable/ic_in" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtIn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:gravity="bottom"
+                android:text="AAPL\n$ 364.11"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
