@@ -17,7 +17,7 @@ class SingleTaskActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         registerClickEvent()
-        binding.textView.text =
+        binding.txtTitle.text =
             "SingleTaskActivity Task Id: ${this.taskId}\nInstance Id: ${System.identityHashCode(this)}"
     }
 

@@ -18,7 +18,7 @@ class StandardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         registerClickEvent()
-        binding.textView.text =
+        binding.txtTitle.text =
             "StandardActivity Task Id: ${this.taskId}\nInstance Id: ${System.identityHashCode(this)}"
         Log.d("StandardActivity", "onCreate")
     }

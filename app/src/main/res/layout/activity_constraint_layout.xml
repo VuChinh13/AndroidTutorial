@@ -119,13 +119,13 @@
             android:layout_height="2px"
             android:layout_marginEnd="10dp"
             android:background="#e0e0e0"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTitle"
+            app:layout_constraintEnd_toStartOf="@+id/txtTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="@+id/txtTitle" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView"
+            android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Or with"
@@ -141,11 +141,11 @@
             android:layout_width="0dp"
             android:layout_height="2px"
             android:layout_marginLeft="10dp"
-            android:background="#e0e0e0"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            android:background="@color/gray_light"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintStart_toEndOf="@+id/txtTitle"
+            app:layout_constraintTop_toTopOf="@+id/txtTitle" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnLoginFacebook"
@@ -240,7 +240,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
-                android:textColor="#3949ab"
+                android:textColor="@color/blue_dark"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/txtNotAccount"
                 app:layout_constraintTop_toTopOf="parent"/>

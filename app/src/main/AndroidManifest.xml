@@ -4,6 +4,7 @@
     <!-- Quyền đọc file âm thanh trong bộ nhớ (Android 13 trở lên) -->
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" /> <!-- Quyền đọc bộ nhớ ngoài (cho Android 12 trở xuống) -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,10 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTutorial">
         <activity
-            android:name=".features.layout.LinearLayoutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".features.layout.ConstraintLayoutActivity"
+            android:name=".features.layout.summary.SummaryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".features.layout.LinearLayoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.layout.ConstraintLayoutActivity"
+            android:exported="false" />
         <activity
             android:name=".features.permissions.PermissionActivity"
             android:exported="false" />
