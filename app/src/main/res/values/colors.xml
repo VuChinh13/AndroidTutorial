@@ -21,4 +21,9 @@
     <color name="peach_orange">#FF7D62</color>
     <color name="bright_cyan">#07D1C4</color>
     <color name="mint_blue">#9BFCE3</color>
+    <color name="deep_purple">#6A3EA1</color>
+    <color name="yellow_primary">#F8C715</color>
+    <color name="rose_red">#CE3A54</color>
+    <color name="lemon_yellow">#DEDC52</color>
+    <color name="mint_green">#60D889</color>
 </resources>
