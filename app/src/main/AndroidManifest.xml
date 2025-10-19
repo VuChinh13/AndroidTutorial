@@ -16,7 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTutorial">
         <activity
+            android:name=".features.paywall.PaywallSale50WeeklyActivity"
+            android:exported="false" />
+        <activity
             android:name=".features.layout.NoteHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.layout.summary.SummaryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".features.layout.summary.SummaryActivity"
-            android:exported="false" />
         <activity
             android:name=".features.layout.LinearLayoutActivity"
             android:exported="false" />
