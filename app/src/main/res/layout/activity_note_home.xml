@@ -32,7 +32,7 @@
                 app:srcCompat="@drawable/ic_left_arrow" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView8"
+                android:id="@+id/txtPolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
