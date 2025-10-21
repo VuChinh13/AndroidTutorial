@@ -46,10 +46,15 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     }
 
     private fun showLoadingState() {
+        binding.btnClaimOffer.text = ""
+        binding.pbClaimOffer.visibility = View.VISIBLE
+        binding.btnClaimOffer.isEnabled = false
         binding.blockContent.visibility = View.INVISIBLE
         binding.shimmerBlock.visibility = View.VISIBLE
+        binding.txtPriceDescription.visibility = View.INVISIBLE
         binding.shimmerBlock.startShimmer()
     }
+
 
     private fun simulateLoading() {
         lifecycleScope.launch {
@@ -64,6 +69,7 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
         binding.btnClaimOffer.visibility = View.INVISIBLE
         binding.txtPriceDescription.visibility = View.INVISIBLE
         binding.txtTileError.visibility = View.VISIBLE
+        binding.pbClaimOffer.visibility = View.GONE
         binding.txtTryAgain.visibility = View.VISIBLE
     }
 }

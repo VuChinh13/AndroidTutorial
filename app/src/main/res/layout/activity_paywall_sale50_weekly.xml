@@ -95,11 +95,11 @@
                 android:id="@+id/blockContent"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_67sdp"
-                android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginLeft="@dimen/_14sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_18sdp"
-                app:layout_constraintEnd_toEndOf="@id/txtTitle"
-                app:layout_constraintStart_toStartOf="@id/txtTitle"
+                android:layout_marginRight="@dimen/_14sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtTitle">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:text="@string/discount_price"
-                    android:textColor="#EAF5F8"
+                    android:textColor="#9799A6"
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintEnd_toStartOf="@id/txtOff"
                     app:layout_constraintHorizontal_chainStyle="packed"
@@ -155,12 +155,12 @@
                 android:fontFamily="@font/funnelsans_extrabold"
                 android:text="CLAIM OFFER"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/blockContent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtPriceDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -210,7 +210,7 @@
                 android:id="@+id/txtTryAgain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/funnelsans_regular"
                 android:text="@string/try_again_text"
                 android:textColor="#FFF8F8CC"
@@ -220,6 +220,18 @@
                 app:layout_constraintEnd_toEndOf="@id/txtTileError"
                 app:layout_constraintStart_toStartOf="@id/txtTileError"
                 app:layout_constraintTop_toBottomOf="@id/txtTileError" />
+
+            <ProgressBar
+                android:id="@+id/pbClaimOffer"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/btnClaimOffer"
+                app:layout_constraintEnd_toEndOf="@+id/btnClaimOffer"
+                app:layout_constraintStart_toStartOf="@+id/btnClaimOffer"
+                app:layout_constraintTop_toTopOf="@+id/btnClaimOffer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
