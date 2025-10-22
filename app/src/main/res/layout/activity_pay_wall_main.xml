@@ -35,5 +35,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnPaywallOnboarding"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Paywall Onboarding"
+        app:layout_constraintEnd_toEndOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintStart_toStartOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintTop_toBottomOf="@id/btnPaywallSale30Yearly" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

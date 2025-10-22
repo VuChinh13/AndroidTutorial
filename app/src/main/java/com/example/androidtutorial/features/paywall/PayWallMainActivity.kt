@@ -26,5 +26,11 @@ class PayWallMainActivity : AppCompatActivity() {
             val intent = Intent(this, PaywallSale30YearlyActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnPaywallOnboarding.setOnClickListener {
+            val intent = Intent(this, PaywallOnboardingActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

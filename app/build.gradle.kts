@@ -9,7 +9,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.androidtutorial"
+        applicationId = "com.example.androidtutorial_vuvanchinh"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -34,7 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
