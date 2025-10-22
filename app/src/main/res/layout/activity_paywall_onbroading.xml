@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F7FF"
+    tools:context=".features.paywall.PaywallOnboardingActivity">
+
+    <RadioGroup
+        android:id="@+id/planGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/bg_radio_group"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/_3sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/btnYearly"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_radio_group2"
+            android:button="@null"
+            android:checked="true"
+            android:fontFamily="@font/funnelsans_regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_24sdp"
+            android:text="Yearly"
+            android:textColor="#0F1E47"
+            android:textSize="@dimen/_10sdp" />
+
+        <RadioButton
+            android:id="@+id/btnWeekly"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_radio_group"
+            android:button="@null"
+            android:fontFamily="@font/funnelsans_regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_24sdp"
+            android:text="Weekly"
+            android:textColor="#EAF5F8"
+            android:textSize="@dimen/_10sdp" />
+    </RadioGroup>
+
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_25sdp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/planGroup"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/planGroup"
+        app:srcCompat="@drawable/ic_cancel" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:fontFamily="@font/readexpro_bold"
+        android:gravity="center"
+        android:text="Shrink size\nkeep quality"
+        android:textSize="@dimen/_20sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/planGroup" />
+
+    <ImageView
+        android:id="@+id/imgBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_paywall_onboaring"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:fontFamily="@font/readexpro_regular"
+        android:text="$14.99/year after free trial ends.\nAuto renew, Cancel anytime"
+        android:textColor="#0F1E47"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgBackground" />
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/txtDescription"-->
+<!--        android:padding="@dimen/_12sdp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:background="@drawable/bg_switch_container">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvFreeTrial"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Free trial enabled"-->
+<!--            android:textColor="#0C1B45"-->
+<!--            android:textSize="16sp"-->
+<!--            android:fontFamily="@font/funnelsans_semibold" />-->
+
+<!--        <androidx.appcompat.widget.SwitchCompat-->
+<!--            android:id="@+id/switchFreeTrial"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:thumbTint="@color/switch_thumb_color"-->
+<!--            android:trackTint="@color/switch_track_color"-->
+<!--            android:checked="true" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

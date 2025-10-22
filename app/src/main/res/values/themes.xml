@@ -6,6 +6,7 @@
     </style>
 
     <style name="Theme.AndroidTutorial" parent="Base.Theme.AndroidTutorial" />
+
     <style name="CircleImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10dp</item>
