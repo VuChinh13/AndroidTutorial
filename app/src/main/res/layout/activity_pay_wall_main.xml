@@ -44,5 +44,31 @@
         app:layout_constraintStart_toStartOf="@id/btnPaywallSale30Yearly"
         app:layout_constraintTop_toBottomOf="@id/btnPaywallSale30Yearly" />
 
+    <Button
+        android:id="@+id/btnPaywallUnlockFeature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Paywall Unlock Feature"
+        app:layout_constraintEnd_toEndOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintStart_toStartOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintTop_toBottomOf="@id/btnPaywallOnboarding" />
+
+    <Button
+        android:id="@+id/btnPaywallFocusBottomSheet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Paywall Focus BottomSheet"
+        app:layout_constraintEnd_toEndOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintStart_toStartOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintTop_toBottomOf="@id/btnPaywallUnlockFeature" />
+
+    <Button
+        android:id="@+id/btnPaywallFocusFullScreen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Paywall Focus FullScreen"
+        app:layout_constraintEnd_toEndOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintStart_toStartOf="@id/btnPaywallSale30Yearly"
+        app:layout_constraintTop_toBottomOf="@id/btnPaywallFocusBottomSheet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

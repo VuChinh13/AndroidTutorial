@@ -12,5 +12,23 @@
     <string name="description_onboarding_weekly">"$4.99/year after free trial ends.\nAuto renew, Cancel anytime"</string>
     <string name="description_onboarding_yearly_trial">$14.99/year\nAuto renew, Cancel anytime</string>
     <string name="description_onboarding_weekly_trial">$4.99/week\nAuto renew, Cancel anytime</string>
+    <string name="description_price_yearly_plan">$19.99/year after free trial ends.\nAuto renew, cancel anytime</string>
+    <string name="description_price_weekly_plan">$4.99/week after free trial ends.\nAuto renew, cancel anytime</string>
+    <string name="description_price_yearly_continue">Auto renew at $19.99/year</string>
+    <string name="description_price_weekly_continue">Auto renew at $4.99/week</string>
+    <string name="continue_1">Continue</string>
+    <string name="cancel_anytime">Cancel anytime</string>
+    <string name="try_for_free">Try for free</string>
+    <string name="day_free_trial_enabled">3-day free trial enabled</string>
+    <string name="year">/year</string>
+    <string name="week">/week</string>
+    <string name="price_19.99">$19.99</string>
     <string name="try_again_text"><u>Try again</u></string>
+    <string name="only_per_week">Only $0.412 per week</string>
+    <string name="yearly_plan">Yearly Plan</string>
+    <string name="weekly_plan">Weekly Plan</string>
+    <string name="price_4.99">$4.99</string>
+    <string name="saved_92">Saved 92%</string>
+    <string name="smarter_storage_made">SMARTER STORAGE MADE\nAFFORDABLE</string>
+    <string name="year_after_free">$19.99/year after free trial ends.\nAuto renew, cancel anytime</string>
 </resources>

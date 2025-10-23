@@ -1,9 +1,11 @@
 package com.example.androidtutorial.features.paywall
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.androidtutorial.R
@@ -14,8 +16,8 @@ import kotlinx.coroutines.launch
 class PaywallOnboardingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPaywallOnbroadingBinding
-    private var isYearlySelected = true      // Mặc định Yearly
-    private var isFreeTrialEnabled = true    // Mặc định bật Switch
+    private var isYearlySelected = true
+    private var isFreeTrialEnabled = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,6 @@ class PaywallOnboardingActivity : AppCompatActivity() {
 
     private fun setupUI() = with(binding) {
         updateUI()
-        // Sự kiện loading
         loading()
         simulateLoading()
 
@@ -49,13 +50,22 @@ class PaywallOnboardingActivity : AppCompatActivity() {
             updateUI()
         }
 
-        // Đóng màn hình
         btnClose.setOnClickListener { finish() }
 
         with(binding) {
             btnTryFree.setOnClickListener {
-                if (binding.btnTryFree.text == "CONTINUE") {
-
+                if (btnTryFree.text == "CONTINUE") {
+                    groupSwitch.visibility = View.INVISIBLE
+                    ConstraintSet().apply {
+                        clone(main)
+                        connect(
+                            R.id.btnTryFree,
+                            ConstraintSet.TOP,
+                            R.id.txtDescription,
+                            ConstraintSet.BOTTOM
+                        )
+                        applyTo(binding.main)
+                    }
                 }
             }
         }
@@ -78,10 +88,10 @@ class PaywallOnboardingActivity : AppCompatActivity() {
             styleUnselectedButton(btnYearly)
         }
 
-        // Cập nhật nội dung mô tả
         txtDescription.text = getDescriptionText()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getDescriptionText(): String {
         return if (!isFreeTrialEnabled) {
             binding.btnTryFree.text = "CONTINUE"
@@ -90,7 +100,7 @@ class PaywallOnboardingActivity : AppCompatActivity() {
             else
                 getString(R.string.description_onboarding_weekly_trial)
         } else {
-            binding.btnTryFree.text = "TRY FOR FREE"
+            binding.btnTryFree.setText(R.string.try_for_free)
             if (isYearlySelected)
                 getString(R.string.description_onboarding_yearly)
             else
@@ -102,7 +112,8 @@ class PaywallOnboardingActivity : AppCompatActivity() {
         delay(2500)
         with(binding) {
             btnTryFree.setBackgroundResource(R.drawable.bg_button_try_to_free)
-            btnTryFree.text = "TRY TO FREE"
+            btnTryFree.setText(R.string.try_for_free)
+            btnTryFree.isEnabled = true
             pbTryToFree.visibility = View.GONE
             txtDescription.visibility = View.VISIBLE
         }

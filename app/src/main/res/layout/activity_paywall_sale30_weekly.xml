@@ -9,17 +9,16 @@
     android:fitsSystemWindows="true"
     tools:context=".features.paywall.PaywallSale30WeeklyActivity">
 
-    <!-- Close Button -->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnClose"
         android:layout_width="@dimen/_23sdp"
         android:layout_height="@dimen/_23sdp"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_39sdp"
-        android:src="@drawable/ic_close_sale30_weekly"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="@dimen/_21sdp"
-        app:layout_constraintBottom_toTopOf="@id/guideline" />
+        android:src="@drawable/ic_close_sale30_weekly"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgBackground"

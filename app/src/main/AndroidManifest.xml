@@ -16,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTutorial">
         <activity
+            android:name=".features.paywall.PayWallFocusFullScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.paywall.PayWallFocusBottomSheetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.paywall.PaywallUnlockFeatureActivity"
+            android:exported="false" />
+        <activity
             android:name=".features.paywall.PayWallMainActivity"
             android:exported="true">
             <intent-filter>

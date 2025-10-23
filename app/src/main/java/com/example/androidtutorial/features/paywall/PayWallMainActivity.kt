@@ -32,5 +32,19 @@ class PayWallMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnPaywallUnlockFeature.setOnClickListener {
+            val intent = Intent(this, PaywallUnlockFeatureActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPaywallFocusBottomSheet.setOnClickListener {
+            val intent = Intent(this, PayWallFocusBottomSheetActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPaywallFocusFullScreen.setOnClickListener {
+            val intent = Intent(this, PayWallFocusFullScreenActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

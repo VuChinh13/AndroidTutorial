@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".features.paywall.PayWallFocusFullScreenActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="H,360:285"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_paywall_focus" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_minus13sdp"
+            android:background="@drawable/bg_focus_bottom_sheet"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgBackground">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icProtected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:layout_constraintEnd_toStartOf="@id/txt3Day"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnTryToFree"
+                app:srcCompat="@drawable/ic_protected" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt3Day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="@string/day_free_trial_enabled"
+                android:textColor="#006C43"
+                app:layout_constraintBottom_toBottomOf="@id/icProtected"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icProtected"
+                app:layout_constraintTop_toTopOf="@id/icProtected" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnYearlyPlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:layout_marginRight="@dimen/_14sdp"
+                android:background="@drawable/bg_button_yearly_plan"
+                android:paddingBottom="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:fontFamily="@font/readexpro_regular"
+                    android:text="@string/year"
+                    android:textColor="#25104A"
+                    android:textSize="@dimen/_9sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/txtDescriptionPriceYearly"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txtDescriptionPriceYearly" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtDescriptionPriceYearly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/readexpro_bold"
+                    android:text="@string/price_19.99"
+                    android:textColor="#25104A"
+                    android:textSize="@dimen/_16sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/txtYear"
+                    app:layout_constraintTop_toBottomOf="@id/txtTitle92" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtDescriptionYearly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:fontFamily="@font/readexpro_regular"
+                    android:gravity="center"
+                    android:text="@string/only_per_week"
+                    android:textColor="#25104A"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtYearlyPlan" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtYearlyPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:fontFamily="@font/readexpro_bold"
+                    android:text="@string/yearly_plan"
+                    android:textColor="#25104A"
+                    android:textSize="@dimen/_16sdp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtTitle92" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtTitle92"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_23sdp"
+                    android:background="@drawable/bg_title_save92"
+                    android:fontFamily="@font/readexpro_bold"
+                    android:gravity="center"
+                    android:text="Saved 92%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/pbYearlyPlan"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:indeterminateTint="#0F1E47"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtTitle92" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnWeeklyPlan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/bg_button_weekly_plan"
+                android:paddingTop="@dimen/_13sdp"
+                android:paddingBottom="@dimen/_13sdp"
+                app:layout_constraintLeft_toLeftOf="@id/btnYearlyPlan"
+                app:layout_constraintRight_toRightOf="@id/btnYearlyPlan"
+                app:layout_constraintTop_toBottomOf="@id/btnYearlyPlan">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtDescriptionPriceWeekly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/readexpro_bold"
+                    android:text="@string/price_4.99"
+                    android:textColor="#25104A"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/txtWeek"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:fontFamily="@font/readexpro_regular"
+                    android:text="@string/week"
+                    android:textColor="#25104A"
+                    android:textSize="@dimen/_9sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/txtDescriptionPriceWeekly"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txtDescriptionPriceWeekly" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtWeeklyPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:fontFamily="@font/readexpro_bold"
+                    android:gravity="center"
+                    android:text="@string/weekly_plan"
+                    android:textColor="#25104A"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/pbWeeklyPlan"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:indeterminateTint="#0F1E47"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/readexpro_bold"
+                android:gravity="center"
+                android:text="@string/smarter_storage_made"
+                android:textColor="#25104A"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTryToFree"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_42sdp"
+                android:layout_marginLeft="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_18sdp"
+                android:background="@drawable/bg_button_try_to_free_bottom_sheet2"
+                android:fontFamily="@font/funnelsans_extrabold"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPriceDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtPriceDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/readexpro_regular"
+                android:gravity="center"
+                android:text="@string/year_after_free"
+                android:textColor="#25104A"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintEnd_toEndOf="@id/btnTryToFree"
+                app:layout_constraintStart_toStartOf="@id/btnTryToFree"
+                app:layout_constraintTop_toBottomOf="@id/btnWeeklyPlan" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtPolicy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:fontFamily="@font/readexpro_regular"
+                android:gravity="center"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:text="@string/policyOnBoarding"
+                android:textColor="#4D5A68"
+                android:textSize="@dimen/_7sdp"
+                app:layout_constraintEnd_toEndOf="@id/btnTryToFree"
+                app:layout_constraintStart_toStartOf="@id/btnTryToFree"
+                app:layout_constraintTop_toBottomOf="@id/icProtected" />
+
+            <ProgressBar
+                android:id="@+id/pbTryToFree"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="@dimen/_23sdp"
+                android:layout_height="@dimen/_23sdp"
+                android:indeterminateTint="#9F9F9F"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/btnTryToFree"
+                app:layout_constraintEnd_toEndOf="@+id/btnTryToFree"
+                app:layout_constraintStart_toStartOf="@+id/btnTryToFree"
+                app:layout_constraintTop_toTopOf="@+id/btnTryToFree" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnClose"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_cancel_full_screen" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
