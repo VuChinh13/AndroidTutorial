@@ -2,6 +2,7 @@ package com.example.androidtutorial.features.paywall
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.androidtutorial.R
@@ -65,7 +66,7 @@ class PayWallFocusBottomSheetActivity : AppCompatActivity() {
             }
 
             btnTryToFree.setOnClickListener {
-                if (btnTryToFree.text.equals(R.string.try_for_free)) {
+                if (btnTryToFree.text.toString() == getString(R.string.try_for_free)) {
                     isEnableButtonContinue = true
                     btnTryToFree.setText(R.string.continue_1)
                     txt3Day.setText(R.string.cancel_anytime)

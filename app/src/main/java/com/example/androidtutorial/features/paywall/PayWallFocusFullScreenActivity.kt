@@ -67,7 +67,7 @@ class PayWallFocusFullScreenActivity : AppCompatActivity() {
             }
 
             btnTryToFree.setOnClickListener {
-                if (btnTryToFree.equals(R.string.try_for_free)) {
+                if (btnTryToFree.text.toString() == getString(R.string.try_for_free)) {
                     isEnableButtonContinue = true
                     btnTryToFree.setText(R.string.continue_1)
                     txt3Day.setText(R.string.cancel_anytime)
