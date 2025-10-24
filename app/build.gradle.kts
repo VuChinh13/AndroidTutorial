@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.androidtutorial"
+    namespace = "com.eco.musicplayer"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.androidtutorial_vuvanchinh"
+        applicationId = "com.eco.musicplayer.audioplayer.music"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation("com.android.billingclient:billing:7.0.0")
     implementation("com.airbnb.android:lottie:6.0.0")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("com.google.android.material:material:1.12.0")

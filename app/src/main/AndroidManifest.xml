@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTutorial">
         <activity
-            android:name=".features.paywall.PayWallFocusFullScreenActivity"
+            android:name=".audioplayer.music.paywall.PayWallFocusFullScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".features.paywall.PayWallFocusBottomSheetActivity"
+            android:name=".audioplayer.music.paywall.PayWallFocusBottomSheetActivity"
             android:exported="false" />
         <activity
-            android:name=".features.paywall.PaywallUnlockFeatureActivity"
+            android:name=".audioplayer.music.paywall.PaywallUnlockFeatureActivity"
             android:exported="false" />
         <activity
-            android:name=".features.paywall.PayWallMainActivity"
+            android:name=".audioplayer.music.paywall.PayWallMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,71 +34,71 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.paywall.PaywallOnboardingActivity"
+            android:name=".audioplayer.music.paywall.PaywallOnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".features.paywall.PaywallSale30YearlyActivity"
+            android:name=".audioplayer.music.paywall.PaywallSale30YearlyActivity"
             android:exported="false" />
         <activity
-            android:name=".features.paywall.PaywallSale30WeeklyActivity"
+            android:name=".audioplayer.music.paywall.PaywallSale30WeeklyActivity"
             android:exported="false" />
         <activity
-            android:name=".features.paywall.PaywallSale50WeeklyActivity"
+            android:name=".audioplayer.music.paywall.PaywallSale50WeeklyActivity"
             android:exported="false" />
         <activity
-            android:name=".features.layout.NoteHomeActivity"
+            android:name=".audioplayer.music.layout.NoteHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".features.layout.summary.SummaryActivity"
+            android:name=".audioplayer.music.layout.summary.SummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".features.layout.LinearLayoutActivity"
+            android:name=".audioplayer.music.layout.LinearLayoutActivity"
             android:exported="false" />
         <activity
-            android:name=".features.layout.ConstraintLayoutActivity"
+            android:name=".audioplayer.music.layout.ConstraintLayoutActivity"
             android:exported="false" />
         <activity
-            android:name=".features.permissions.PermissionActivity"
+            android:name=".audioplayer.music.permissions.PermissionActivity"
             android:exported="false" />
         <activity
-            android:name=".features.launchmode.MainActivity"
+            android:name=".audioplayer.music.launchmode.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".features.launchmode.SingleInstanceActivity"
+            android:name=".audioplayer.music.launchmode.SingleInstanceActivity"
             android:exported="false"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".features.launchmode.SingleTaskActivity"
+            android:name=".audioplayer.music.launchmode.SingleTaskActivity"
             android:exported="false"
             android:launchMode="singleTask" />
         <activity
-            android:name=".features.launchmode.SingleTopActivity"
+            android:name=".audioplayer.music.launchmode.SingleTopActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".features.launchmode.StandardActivity"
+            android:name=".audioplayer.music.launchmode.StandardActivity"
             android:exported="false"
             android:launchMode="standard" />
         <activity
-            android:name=".features.navigation.activityresultlauncher.SecondaryResultActivity"
+            android:name=".audioplayer.music.navigation.activityresultlauncher.SecondaryResultActivity"
             android:exported="false" />
         <activity
-            android:name=".features.navigation.activityresultlauncher.FirstResultActivity"
+            android:name=".audioplayer.music.navigation.activityresultlauncher.FirstResultActivity"
             android:exported="true" />
         <activity
-            android:name=".features.navigation.bundle.SecondaryBundleActivity"
+            android:name=".audioplayer.music.navigation.bundle.SecondaryBundleActivity"
             android:exported="false" />
         <activity
-            android:name=".features.navigation.bundle.FirstBundleActivity"
+            android:name=".audioplayer.music.navigation.bundle.FirstBundleActivity"
             android:exported="false" />
         <activity
-            android:name=".features.navigation.intent.SecondaryActivity"
+            android:name=".audioplayer.music.navigation.intent.SecondaryActivity"
             android:exported="false" />
         <activity
-            android:name=".features.navigation.intent.FirstActivity"
+            android:name=".audioplayer.music.navigation.intent.FirstActivity"
             android:exported="false" />
         <activity
-            android:name=".features.lifecycle.LifecycleActivity"
+            android:name=".audioplayer.music.lifecycle.LifecycleActivity"
             android:exported="false" />
     </application>
 
