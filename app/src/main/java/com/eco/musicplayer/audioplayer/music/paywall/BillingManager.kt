@@ -2,22 +2,23 @@ package com.eco.musicplayer.audioplayer.music.paywall
 
 import android.app.Activity
 import android.content.Context
-import com.android.billingclient.api.BillingClient
-import com.android.billingclient.api.BillingClientStateListener
-import com.android.billingclient.api.BillingFlowParams
-import com.android.billingclient.api.BillingResult
-import com.android.billingclient.api.Purchase
-import com.android.billingclient.api.PurchasesUpdatedListener
-import com.android.billingclient.api.QueryProductDetailsParams
+import com.android.billingclient.api.*
 
-class BillingManager(context: Context, private val onPurchase: (Purchase) -> Unit) {
+class BillingManager(
+    context: Context,
+    private val onPurchase: (Purchase) -> Unit
+) {
+
+    private var onProductLoaded: ((ProductDetails) -> Unit)? = null
+
+    fun setOnProductLoadedListener(listener: (ProductDetails) -> Unit) {
+        onProductLoaded = listener
+    }
 
     private val purchasesUpdatedListener =
         PurchasesUpdatedListener { billingResult, purchases ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
-                for (purchase in purchases) {
-                    onPurchase(purchase) // Gọi callback khi mua thành công
-                }
+                purchases.forEach { purchase -> onPurchase(purchase) }
             }
         }
 
@@ -35,37 +36,27 @@ class BillingManager(context: Context, private val onPurchase: (Purchase) -> Uni
             }
 
             override fun onBillingServiceDisconnected() {
-                // Có thể retry kết nối lại
+                // Có thể retry nếu muốn
             }
         })
     }
 
     fun queryProductAndLaunchBilling(activity: Activity, productId: String) {
-        val productList = listOf(
-            QueryProductDetailsParams.Product.newBuilder()
-                .setProductId(productId)
-                .setProductType(BillingClient.ProductType.INAPP)
-                .build()
-        )
-
         val params = QueryProductDetailsParams.newBuilder()
-            .setProductList(productList)
+            .setProductList(
+                listOf(
+                    QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId(productId)
+                        .setProductType(BillingClient.ProductType.SUBS)
+                        .build()
+                )
+            )
             .build()
 
         billingClient.queryProductDetailsAsync(params) { result, productDetailsList ->
             if (result.responseCode == BillingClient.BillingResponseCode.OK && productDetailsList.isNotEmpty()) {
-                val productDetails = productDetailsList[0]
-
-                val billingFlowParams = BillingFlowParams.newBuilder()
-                    .setProductDetailsParamsList(
-                        listOf(
-                            BillingFlowParams.ProductDetailsParams.newBuilder()
-                                .setProductDetails(productDetails)
-                                .build()
-                        )
-                    ).build()
-
-                billingClient.launchBillingFlow(activity, billingFlowParams)
+                // ✅ Gọi callback trả kết quả về cho Activity
+                onProductLoaded?.invoke(productDetailsList[0])
             }
         }
     }

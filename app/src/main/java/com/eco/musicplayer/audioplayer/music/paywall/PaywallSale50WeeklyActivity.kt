@@ -1,10 +1,12 @@
 package com.eco.musicplayer.audioplayer.music.paywall
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.eco.musicplayer.R
 import com.eco.musicplayer.databinding.ActivityPaywallSale50WeeklyBinding
 import com.facebook.shimmer.Shimmer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -31,8 +33,26 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
         }
 
         billingManager.startConnection {
+            // Nhận dữ liệu sau khi query xong
+            billingManager.setOnProductLoadedListener { productDetails ->
+                // Lấy offer intro-price
+                val introOffer = productDetails.subscriptionOfferDetails?.find { it.offerId == "intro-price" }
+
+                if (introOffer != null) {
+                    val phase = introOffer.pricingPhases.pricingPhaseList.first()
+                    val price = phase.formattedPrice
+
+                    // ✅ Hiển thị giá ưu đãi lên UI
+                    binding.txtDiscount.text = getString(R.string.discount_price, price)
+                    Log.d("Checkloi",price)
+                } else {
+                    binding.txtDiscount.text = "Không tìm thấy ưu đãi intro-price"
+                }
+            }
+
+            // Nhấn nút sẽ query
             binding.btnClaimOffer.setOnClickListener {
-                billingManager.queryProductAndLaunchBilling(this, "demo_premium_upgrade")
+                billingManager.queryProductAndLaunchBilling(this, "free_123")
             }
         }
     }
@@ -46,7 +66,7 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     private fun setupBottomSheet() {
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
         val screenHeight = resources.displayMetrics.heightPixels
-        bottomSheetBehavior.peekHeight = (screenHeight * 0.35).toInt()
+        bottomSheetBehavior.peekHeight = (screenHeight * 0.391).toInt()
         bottomSheetBehavior.isHideable = false
     }
 
@@ -112,6 +132,8 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
         btnClaimOffer.isEnabled = true
         txtPriceDescription.visibility = View.VISIBLE
         pbClaimOffer.visibility = View.GONE
+        // chỗ này hiển thị
+        // txtDiscount.text = getString(R.string.discount_price, chuyền vào giá 1 tuần thì hiển thị thế nào)
     }
 
     private fun simulateLoading1() = lifecycleScope.launch {
