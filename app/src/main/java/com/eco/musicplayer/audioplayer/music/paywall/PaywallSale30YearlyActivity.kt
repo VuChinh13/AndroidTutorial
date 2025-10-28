@@ -87,7 +87,7 @@ class PaywallSale30YearlyActivity : AppCompatActivity() {
             applyTo(binding.main)
         }
         txtPriceDescription.visibility = View.VISIBLE
-        btnClaimOffer.text = "CLAIM OFFER"
+        btnClaimOffer.text = getString(R.string.claim_offer)
         txtPriceDescription.visibility = View.VISIBLE
         pbClaimOffer.visibility = View.GONE
     }

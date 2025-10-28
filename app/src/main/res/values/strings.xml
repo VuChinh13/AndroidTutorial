@@ -9,6 +9,7 @@
     <string name="discount_price"><strike><b>%1$s</b>/week</strike></string>
     <string name="price_description">"%1$s for %2$d first week then %3$s next week.\nBilled weekly, cancel anytime."</string>
     <string name="previous">Previous</string>
+    <string name="saved">Saved 92%</string>
     <string name="policy">By continuing you agree to our <u><b>Terms</b></u> and <u><b>Privacy</b></u> policies\n\u2022 Subscription gives you access to V9Compress\'s premium features, all ads will be removed.\n\u2022 Subscription plans are automatically renewed and can be canceled anytime in Subscriptions on Google Play.\n\u2022 You will not be charged if subscription is canceled before trial period ends.\n\u2022 Subscription is not required to use V9Compress</string>
     <string name="policyOnBoarding">By continuing you agree to our <u><b>Terms</b></u> and <u><b>Privacy</b></u> policies\n Subscription gives you access to V9Compress\'s premium features, all ads will be removed.\n Subscription plans are automatically renewed and can be canceled anytime in Subscriptions on Google Play.\n You will not be charged if subscription is canceled before trial period ends.\n Subscription is not required to use V9Compress</string>
     <string name="description_onboarding_yearly">"$14.99/year after free trial ends.\nAuto renew, Cancel anytime"</string>
@@ -34,4 +35,13 @@
     <string name="saved_92">Saved 92%</string>
     <string name="smarter_storage_made">SMARTER STORAGE MADE\nAFFORDABLE</string>
     <string name="year_after_free">$19.99/year after free trial ends.\nAuto renew, cancel anytime</string>
+    <string name="plan_yearly">Yearly</string>
+    <string name="plan_weekly">Weekly</string>
+    <string name="title_shrink_size">Shrink size\nkeep quality</string>
+    <string name="description_price">$14.99/year after free trial ends.\nAuto renew, Cancel anytime</string>
+    <string name="free_trial_enabled">Free trial enabled</string>
+    <string name="price_description_sale30">Try 3 days for FREE, then 8.99$ per\nweek. Auto renew, cancel anytime</string>
+    <string name="load_error_message">We couldn’t load the information</string>
+    <string name="unlock_title">high-quality\ncompression</string>
+    <string name="unlock_price_description">$14.99/year after free trial ends.\nAuto renew, cancel anytime</string>
 </resources>

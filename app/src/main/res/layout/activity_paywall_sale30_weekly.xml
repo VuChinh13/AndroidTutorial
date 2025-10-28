@@ -52,7 +52,8 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:background="@drawable/bg_button_claim_offer_sale30_weekly"
         android:fontFamily="@font/funnelsans_extrabold"
-        android:text="CLAIM OFFER"
+        android:text="@string/claim_offer"
+        android:textAllCaps="true"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="@id/imgBackground"
@@ -78,7 +79,7 @@
             android:fontFamily="@font/funnelsans_semibold"
             android:gravity="center_horizontal"
             android:padding="@dimen/_8sdp"
-            android:text="Try 3 days for FREE, then 8.99$ per\nweek. Auto renew, cancel anytime"
+            android:text="@string/price_description_sale30"
             android:textColor="#F3F3FC"
             android:textSize="@dimen/_12sdp" />
     </androidx.cardview.widget.CardView>
@@ -105,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
         android:fontFamily="@font/funnelsans_semibold"
-        android:text="We couldn’t load the information"
+        android:text="@string/load_error_message"
         android:textColor="@color/white"
         android:textSize="@dimen/_13sdp"
         android:visibility="gone"

@@ -22,7 +22,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_paywall_focus" />
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,7 +127,7 @@
                     android:background="@drawable/bg_title_save92"
                     android:fontFamily="@font/readexpro_bold"
                     android:gravity="center"
-                    android:text="Saved 92%"
+                    android:text="@string/saved_92"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintLeft_toLeftOf="parent"

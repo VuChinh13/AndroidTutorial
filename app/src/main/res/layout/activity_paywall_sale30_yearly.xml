@@ -76,7 +76,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:background="@drawable/bg_button_claim_offer_sale30_yearly"
         android:fontFamily="@font/funnelsans_extrabold"
-        android:text="CLAIM OFFER"
+        android:text="@string/claim_offer"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="@id/imgBackground"

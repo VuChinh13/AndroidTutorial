@@ -10,8 +10,8 @@
     tools:context=".audioplayer.music.paywall.PaywallOnboardingActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:id="@+id/main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/_16sdp">
 
@@ -38,7 +38,7 @@
                 android:fontFamily="@font/funnelsans_regular"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/_24sdp"
-                android:text="Yearly"
+                android:text="@string/plan_yearly"
                 android:textColor="#0F1E47"
                 android:textSize="@dimen/_12sdp" />
 
@@ -51,15 +51,15 @@
                 android:fontFamily="@font/funnelsans_regular"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/_24sdp"
-                android:text="Weekly"
+                android:text="@string/plan_weekly"
                 android:textColor="#EAF5F8"
                 android:textSize="@dimen/_12sdp" />
         </RadioGroup>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnClose"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="@id/planGroup"
@@ -74,13 +74,13 @@
             android:layout_marginTop="@dimen/_14sdp"
             android:fontFamily="@font/readexpro_bold"
             android:gravity="center"
-            app:textAllCaps="true"
-            android:text="Shrink size\nkeep quality"
+            android:text="@string/title_shrink_size"
             android:textColor="#0F1E47"
             android:textSize="@dimen/_23sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/planGroup" />
+            app:layout_constraintTop_toBottomOf="@id/planGroup"
+            app:textAllCaps="true" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgBackground"
@@ -89,8 +89,8 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:scaleType="fitXY"
             android:src="@drawable/img_paywall_onboaring"
+            app:layout_constraintDimensionRatio="H,360:285"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.35"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtTitle" />
 
@@ -101,7 +101,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:fontFamily="@font/readexpro_regular"
             android:gravity="center"
-            android:text="$14.99/year after free trial ends.\nAuto renew, Cancel anytime"
+            android:text="@string/description_price"
             android:textColor="#0F1E47"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/readexpro_regular"
                 android:gravity="center"
-                android:text="Free trial enabled"
+                android:text="@string/free_trial_enabled"
                 android:textColor="#0F1E47"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -157,10 +157,10 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/bg_button_try_to_free2"
             android:fontFamily="@font/funnelsans_extrabold"
-            android:text="TRY TO FREE"
+            android:text="@string/try_for_free"
+            android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/_13sdp"
-            android:textAllCaps="true"
             app:layout_constraintLeft_toLeftOf="@id/groupSwitch"
             app:layout_constraintRight_toRightOf="@id/groupSwitch"
             app:layout_constraintTop_toBottomOf="@id/groupSwitch" />

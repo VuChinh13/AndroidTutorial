@@ -244,7 +244,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/funnelsans_regular"
                     android:text="@string/try_again_text"
-                    android:textColor="#FFF8F8CC"
+                    android:textColor="#CCFFF8F8"
                     android:textSize="@dimen/_11sdp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@id/txtPolicy"
