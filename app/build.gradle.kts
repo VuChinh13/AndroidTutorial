@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("com.android.billingclient:billing:7.0.0")
     implementation("com.airbnb.android:lottie:6.0.0")
     implementation("com.facebook.shimmer:shimmer:0.5.0")

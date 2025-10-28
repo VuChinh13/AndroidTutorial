@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".features.paywall.PaywallSale50WeeklyActivity">
+    tools:context=".audioplayer.music.paywall.PaywallSale50WeeklyActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView6"
@@ -24,23 +24,22 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnClose"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="top|start"
             android:layout_marginStart="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_38sdp"
-            android:src="@drawable/ic_close_sale50_weekly" />
+            android:src="@drawable/ic_close_sale50_weekly"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="0dp"
-            android:scaleType="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintHeight_percent="0.68"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
@@ -123,24 +122,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:text="@string/discount_price"
                         android:textColor="#9799A6"
                         android:textSize="@dimen/_14sdp"
-                        app:layout_constraintEnd_toStartOf="@id/txtOff"
+                        android:text="@string/discount_price"
+                        app:layout_constraintEnd_toStartOf="@id/txtOffBadge"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtOff"
+                        android:id="@+id/txtOffBadge"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_18sdp"
                         android:background="@drawable/bg_discount_badge"
                         android:fontFamily="@font/funnelsans_bold"
                         android:gravity="center"
+                        android:visibility="invisible"
                         android:paddingLeft="@dimen/_3sdp"
                         android:paddingRight="@dimen/_3sdp"
-                        android:text="OFF 50%"
+                        android:text="@string/off"
                         android:textColor="#EAF5F8"
                         android:textFontWeight="700"
                         android:textSize="@dimen/_14sdp"
@@ -150,17 +150,16 @@
                         app:layout_constraintTop_toTopOf="@id/txtDiscount" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/txtPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/funnelsans_bold"
-                        android:text="$3.99/week"
                         android:textColor="#EAF5F8"
-                        android:textSize="@dimen/_37sdp"
+                        android:textSize="@dimen/_30sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/txtOff" />
+                        app:layout_constraintTop_toBottomOf="@id/txtOffBadge" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -168,11 +167,11 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_42sdp"
                     android:layout_marginLeft="@dimen/_14sdp"
+                    android:textAllCaps="true"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:layout_marginRight="@dimen/_14sdp"
                     android:background="@drawable/bg_button_claim_offer"
                     android:fontFamily="@font/funnelsans_extrabold"
-                    android:text="CLAIM OFFER"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +185,6 @@
                     android:layout_marginTop="@dimen/_12sdp"
                     android:fontFamily="@font/funnelsans_medium"
                     android:gravity="center"
-                    android:text="$3.99 for first week then $8.99 next week.\nBilled weekly, cancel anytime."
                     android:textColor="#EAF5F8"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintEnd_toEndOf="@id/btnClaimOffer"

@@ -1,60 +1,87 @@
 package com.eco.musicplayer.audioplayer.music.paywall
 
+import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.android.billingclient.api.ProductDetails
 import com.eco.musicplayer.R
 import com.eco.musicplayer.databinding.ActivityPaywallSale50WeeklyBinding
 import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.card.MaterialCardView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class PaywallSale50WeeklyActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityPaywallSale50WeeklyBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<MaterialCardView>
-
     private lateinit var billingManager: BillingManager
-
+    private val productId = "free_123"
+    private val offerId = "intro-price"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaywallSale50WeeklyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupUI()
+        billingManager =
+            BillingManager(this) { productDetails -> handleProductDetails(productDetails) }
+    }
 
-        billingManager = BillingManager(this) { purchase ->
-            Toast.makeText(this, "Mua thành công: ${purchase.products}", Toast.LENGTH_SHORT).show()
+    private fun handleProductDetails(productDetails: ProductDetails) {
+        lifecycleScope.launch(Dispatchers.Main) {
+            val introOffer =
+                productDetails.subscriptionOfferDetails?.find { it.offerId == offerId }
+
+            if (introOffer != null) {
+                val pricingPhases = introOffer.pricingPhases.pricingPhaseList
+
+                val introPhase = pricingPhases.firstOrNull()
+                val basePhase = pricingPhases.getOrNull(1)
+
+                val introPrice = introPhase?.formattedPrice
+                val basePrice = basePhase?.formattedPrice
+                val introCycleCount = introPhase?.billingCycleCount
+
+                val introMicros = introPhase?.priceAmountMicros ?: 0
+                val baseMicros = basePhase?.priceAmountMicros ?: 1
+                val discountPercent = if (baseMicros > 0) {
+                    100 - ((introMicros * 100) / baseMicros)
+                } else 0
+
+                displayAfterQuery(basePrice, introPrice, discountPercent, introCycleCount)
+                showSuccessState()
+            } else {
+                // làm gì đó ...
+            }
         }
 
-        billingManager.startConnection {
-            // Nhận dữ liệu sau khi query xong
-            billingManager.setOnProductLoadedListener { productDetails ->
-                // Lấy offer intro-price
-                val introOffer = productDetails.subscriptionOfferDetails?.find { it.offerId == "intro-price" }
+    }
 
-                if (introOffer != null) {
-                    val phase = introOffer.pricingPhases.pricingPhaseList.first()
-                    val price = phase.formattedPrice
-
-                    // ✅ Hiển thị giá ưu đãi lên UI
-                    binding.txtDiscount.text = getString(R.string.discount_price, price)
-                    Log.d("Checkloi",price)
-                } else {
-                    binding.txtDiscount.text = "Không tìm thấy ưu đãi intro-price"
-                }
-            }
-
-            // Nhấn nút sẽ query
-            binding.btnClaimOffer.setOnClickListener {
-                billingManager.queryProductAndLaunchBilling(this, "free_123")
-            }
+    @SuppressLint("SetTextI18n")
+    private fun displayAfterQuery(
+        basePrice: String?,
+        introPrice: String?,
+        discountPercent: Long?,
+        introCycleCount: Int?
+    ) {
+        binding.txtDiscount.apply {
+            text = "$basePrice/week"
+            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }
+        binding.txtOffBadge.text = getString(R.string.off, discountPercent)
+        binding.txtPrice.text = getString(R.string.price_week, introPrice)
+        binding.txtPriceDescription.text = getString(
+            R.string.price_description,
+            introPrice,
+            introCycleCount,
+            basePrice
+        )
     }
 
     private fun setupUI() {
@@ -66,7 +93,7 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     private fun setupBottomSheet() {
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
         val screenHeight = resources.displayMetrics.heightPixels
-        bottomSheetBehavior.peekHeight = (screenHeight * 0.391).toInt()
+        bottomSheetBehavior.peekHeight = (screenHeight * 0.38).toInt()
         bottomSheetBehavior.isHideable = false
     }
 
@@ -85,16 +112,16 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     private fun setupListeners() = with(binding) {
         btnClose.setOnClickListener { finish() }
 
-        showLoadingState1()
-        simulateLoading1()
+        showLoadingStateFirst()
+        simulateLoadingFirst()
 
         btnTryAgain.setOnClickListener {
-            showLoadingState2()
-            simulateLoading2()
+            showLoadingStateSecondary()
+            simulateLoadingSecondary()
         }
     }
 
-    private fun showLoadingState1() = with(binding) {
+    private fun showLoadingStateFirst() = with(binding) {
         btnClaimOffer.apply {
             text = ""
             isEnabled = false
@@ -106,7 +133,7 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
         shimmerBlock.showAndStart()
     }
 
-    private fun showLoadingState2() = with(binding) {
+    private fun showLoadingStateSecondary() = with(binding) {
         btnClaimOffer.visibility = View.VISIBLE
         pbClaimOffer.visibility = View.VISIBLE
         blockContent.visibility = View.INVISIBLE
@@ -126,30 +153,29 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     }
 
     private fun showSuccessState() = with(binding) {
+        btnClaimOffer.text = getString(R.string.claim_offer)
+        shimmerBlock.stopShimmer()
         shimmerBlock.visibility = View.GONE
-        blockContent.visibility = View.VISIBLE
-        btnClaimOffer.text = "CLAIM OFFER"
-        btnClaimOffer.isEnabled = true
-        txtPriceDescription.visibility = View.VISIBLE
         pbClaimOffer.visibility = View.GONE
-        // chỗ này hiển thị
-        // txtDiscount.text = getString(R.string.discount_price, chuyền vào giá 1 tuần thì hiển thị thế nào)
+        txtOffBadge.visibility = View.VISIBLE
+        blockContent.visibility = View.VISIBLE
+        txtPriceDescription.visibility = View.VISIBLE
     }
 
-    private fun simulateLoading1() = lifecycleScope.launch {
+    private fun simulateLoadingFirst() = lifecycleScope.launch {
         delay(2500)
         binding.shimmerBlock.stopShimmer()
         showErrorState()
     }
 
-    private fun simulateLoading2() = lifecycleScope.launch {
-        delay(2500)
-        binding.shimmerBlock.stopShimmer()
-        showSuccessState()
+    private fun simulateLoadingSecondary() = lifecycleScope.launch {
+        billingManager.startConnection {
+            billingManager.queryProduct(productId)
+        }
     }
 
     private fun View.showAndStart() {
         visibility = View.VISIBLE
-        if (this is com.facebook.shimmer.ShimmerFrameLayout) startShimmer()
+        if (this is ShimmerFrameLayout) startShimmer()
     }
 }
