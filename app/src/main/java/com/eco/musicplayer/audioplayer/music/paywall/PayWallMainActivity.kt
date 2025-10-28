@@ -7,6 +7,7 @@ import com.eco.musicplayer.databinding.ActivityPayWallMainBinding
 
 class PayWallMainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPayWallMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPayWallMainBinding.inflate(layoutInflater)

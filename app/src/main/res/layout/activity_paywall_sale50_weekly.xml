@@ -142,7 +142,7 @@
                         android:text="@string/off"
                         android:textColor="#EAF5F8"
                         android:textFontWeight="700"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="@id/txtDiscount"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -168,8 +168,11 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
         showErrorState()
     }
 
-    private fun simulateLoadingSecondary() = lifecycleScope.launch {
+    private fun simulateLoadingSecondary() {
         billingManager.startConnection {
+            // log tất cả sản phẩm
+            billingManager.logAllProducts()
+
             billingManager.queryProduct(productId)
         }
     }

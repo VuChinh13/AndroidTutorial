@@ -14,7 +14,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class PaywallOnboardingActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityPaywallOnbroadingBinding
     private var isYearlySelected = true
     private var isFreeTrialEnabled = true
