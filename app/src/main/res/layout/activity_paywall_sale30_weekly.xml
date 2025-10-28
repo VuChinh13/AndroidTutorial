@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#80000000"
     android:fitsSystemWindows="true"
-    tools:context=".features.paywall.PaywallSale30WeeklyActivity">
+    tools:context=".audioplayer.music.paywall.PaywallSale30WeeklyActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnClose"
