@@ -60,7 +60,6 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
                 // làm gì đó ...
             }
         }
-
     }
 
     @SuppressLint("SetTextI18n")

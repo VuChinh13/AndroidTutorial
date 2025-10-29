@@ -86,48 +86,73 @@ class BillingManager(
             .build()
 
         billingClient.queryProductDetailsAsync(params) { result, productDetailsList ->
-            if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                if (productDetailsList.isEmpty()) {
-                    Log.w("BillingManager", "No products found for $productType")
-                    return@queryProductDetailsAsync
-                }
-
-                for (product in productDetailsList) {
-                    logProductDetails(product)
-                }
-            } else {
+            if (result.responseCode != BillingClient.BillingResponseCode.OK) {
                 Log.e(
                     "BillingManager",
                     "Query log failed: ${result.debugMessage}, type=$productType"
                 )
+                return@queryProductDetailsAsync
             }
+
+            if (productDetailsList.isEmpty()) {
+                Log.w("BillingManager", "No products found for $productType")
+                return@queryProductDetailsAsync
+            }
+
+            productDetailsList.forEach { logProductDetails(it) }
         }
     }
 
     private fun logProductDetails(product: ProductDetails) {
-        Log.d("BillingManager", "------ PRODUCT DETAIL ------")
-        Log.d("BillingManager", "ID: ${product.productId}")
-        Log.d("BillingManager", "Title: ${product.title}")
-        Log.d("BillingManager", "Description: ${product.description}")
-        Log.d("BillingManager", "Type: ${product.productType}")
+        val sb = StringBuilder()
+        sb.appendLine("+) ProductDetails:")
+        sb.appendLine(" • productId = ${product.productId}")
+        sb.appendLine(" • productType = ${product.productType}")
+        sb.appendLine(" • title = ${product.title}")
+        sb.appendLine(" • name = ${product.name}")
+        sb.appendLine(" • description = ${product.description}")
 
-        if (product.productType == BillingClient.ProductType.INAPP) {
-            Log.d(
-                "BillingManager",
-                "One-time purchase: ${product.oneTimePurchaseOfferDetails?.formattedPrice}"
-            )
-        } else {
-            product.subscriptionOfferDetails?.forEach { offer ->
-                Log.d("BillingManager", "Offer ID: ${offer.offerId}")
-                offer.pricingPhases.pricingPhaseList.forEach { phase ->
-                    Log.d(
-                        "BillingManager",
-                        " - Price=${phase.formattedPrice}, Period=${phase.billingPeriod}, Cycles=${phase.billingCycleCount}, Recurrence=${phase.recurrenceMode}"
-                    )
+        product.oneTimePurchaseOfferDetails?.let {
+            sb.appendLine(formatOneTimeOffer(it))
+        }
+
+        product.subscriptionOfferDetails?.let {
+            sb.appendLine(formatSubscriptionOffers(it))
+        }
+
+        Log.d("BillingManager", sb.toString())
+    }
+
+    private fun formatOneTimeOffer(offer: ProductDetails.OneTimePurchaseOfferDetails): String =
+        buildString {
+            appendLine(" OneTimePurchaseOfferDetails:")
+            appendLine("   - priceCurrencyCode = ${offer.priceCurrencyCode}")
+            appendLine("   - formattedPrice = ${offer.formattedPrice}")
+        }
+
+    private fun formatSubscriptionOffers(offers: List<ProductDetails.SubscriptionOfferDetails>): String =
+        buildString {
+            appendLine(" SubscriptionOfferDetails (${offers.size}):")
+            offers.forEach { offer ->
+                appendLine("   Offer ID: ${offer.offerId ?: "N/A"}")
+                appendLine("   - basePlanId = ${offer.basePlanId}")
+                appendLine("   - offerTags = ${offer.offerTags}")
+                appendLine("   - offerIdToken = ${offer.offerToken}")
+
+                offer.pricingPhases.pricingPhaseList.forEachIndexed { index, phase ->
+                    appendLine(formatPricingPhase(index, phase))
                 }
             }
         }
 
-        Log.d("BillingManager", "-----------------------------")
-    }
+    private fun formatPricingPhase(index: Int, phase: ProductDetails.PricingPhase): String =
+        buildString {
+            appendLine("     Phase ${index + 1}:")
+            appendLine("       • price = ${phase.formattedPrice}")
+            appendLine("       • currencyCode = ${phase.priceCurrencyCode}")
+            appendLine("       • billingPeriod = ${phase.billingPeriod}")
+            appendLine("       • cycles = ${phase.billingCycleCount}")
+            appendLine("       • recurrence = ${phase.recurrenceMode}")
+        }
+
 }
