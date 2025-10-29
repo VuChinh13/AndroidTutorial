@@ -35,6 +35,9 @@ ProductDetails
 ├── formattedBillingPeriod: String // (mới) hiển thị dễ đọc
 └── formattedPriceAmount: String // (mới, có thuế)
 
+markdown
+Sao chép mã
+
 ### 💡 Ghi chú
 - `oneTimePurchaseOfferDetails`: chỉ có nếu sản phẩm là **In-App** (`productType = "inapp"`).
 - `subscriptionOfferDetails`: chỉ có nếu sản phẩm là **Subscription** (`productType = "subs"`).
