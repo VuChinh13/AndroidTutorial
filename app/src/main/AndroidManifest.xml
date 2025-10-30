@@ -25,7 +25,7 @@
             android:name=".audioplayer.music.paywall.PaywallUnlockFeatureActivity"
             android:exported="false" />
         <activity
-            android:name=".audioplayer.music.paywall.PayWallMainActivity"
+            android:name=".audioplayer.music.paywall.demobilling.ui.PayWallMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
             android:name=".audioplayer.music.paywall.PaywallSale30WeeklyActivity"
             android:exported="false" />
         <activity
-            android:name=".audioplayer.music.paywall.PaywallSale50WeeklyActivity"
+            android:name=".audioplayer.music.paywall.demobilling.ui.PaywallSale50WeeklyActivity"
             android:exported="false" />
         <activity
             android:name=".audioplayer.music.layout.NoteHomeActivity"

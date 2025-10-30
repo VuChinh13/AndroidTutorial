@@ -1,8 +1,12 @@
-package com.eco.musicplayer.audioplayer.music.paywall
+package com.eco.musicplayer.audioplayer.music.paywall.demobilling.billing
 
 import android.content.Context
 import android.util.Log
-import com.android.billingclient.api.*
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.ProductDetails
+import com.android.billingclient.api.QueryProductDetailsParams
 
 class BillingManager(
     context: Context,

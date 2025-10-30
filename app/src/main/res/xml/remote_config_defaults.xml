@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+
+    <entry>
+        <key>demo_config</key>
+        <value>
+            "uiType": "1",
+            "products": [
+            {
+            "productId": "free_123",
+            "offerId": "intro-price"
+            }
+            ],
+            "selectionPosition": 1
+            }
+        </value>
+    </entry>
+
+</defaultsMap>

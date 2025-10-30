@@ -1,13 +1,15 @@
-package com.eco.musicplayer.audioplayer.music.paywall
+package com.eco.musicplayer.audioplayer.music.paywall.demobilling.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.android.billingclient.api.ProductDetails
 import com.eco.musicplayer.R
+import com.eco.musicplayer.audioplayer.music.paywall.demobilling.billing.BillingManager
 import com.eco.musicplayer.databinding.ActivityPaywallSale50WeeklyBinding
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -21,14 +23,20 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPaywallSale50WeeklyBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<MaterialCardView>
     private lateinit var billingManager: BillingManager
-    private val productId = "free_123"
-    private val offerId = "intro-price"
+    private var productId = ""
+    private var offerId = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaywallSale50WeeklyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        productId = intent.getStringExtra("productId") ?: ""
+        offerId = intent.getStringExtra("offerId") ?: ""
+
+        Log.d("PaywallSale50Weekly", "Received productId=$productId, offerId=$offerId")
+
         setupUI()
+
         billingManager =
             BillingManager(this) { productDetails -> handleProductDetails(productDetails) }
     }
@@ -92,7 +100,7 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     private fun setupBottomSheet() {
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
         val screenHeight = resources.displayMetrics.heightPixels
-        bottomSheetBehavior.peekHeight = (screenHeight * 0.38).toInt()
+        bottomSheetBehavior.peekHeight = (screenHeight * 0.37).toInt()
         bottomSheetBehavior.isHideable = false
     }
 
