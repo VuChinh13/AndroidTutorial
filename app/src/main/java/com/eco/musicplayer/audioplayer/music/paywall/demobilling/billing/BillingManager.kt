@@ -7,32 +7,68 @@ import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.QueryProductDetailsParams
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
+@Suppress("DEPRECATION")
 class BillingManager(
-    context: Context,
-    private val onProductLoaded: (ProductDetails) -> Unit
+    private val context: Context,
+    private val scope: CoroutineScope,
+    private val onProductLoaded: (ProductDetails) -> Unit,
+    private val onFailed: () -> Unit
 ) {
     private val billingClient = BillingClient.newBuilder(context)
         .enablePendingPurchases()
         .setListener { _, _ -> }
         .build()
 
+    // Nếu thất bại, sẽ tự retry tối đa 3 lần
     fun startConnection(onReady: () -> Unit) {
-        billingClient.startConnection(object : BillingClientStateListener {
-            override fun onBillingSetupFinished(result: BillingResult) {
-                if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                    onReady()
-                } else {
-                    Log.e("BillingManager", "Billing setup failed: ${result.debugMessage}")
-                }
-            }
-
-            override fun onBillingServiceDisconnected() {
-                Log.w("BillingManager", "Billing service disconnected.")
-            }
-        })
+        scope.launch {
+            retryBillingConnection(maxRetries = 3, onReady)
+        }
     }
 
+    // Thử kết nối lại tối đa [maxRetries] lần, delay tăng dần 1s -> 2s -> 4s.
+    private suspend fun retryBillingConnection(
+        maxRetries: Int,
+        onReady: () -> Unit
+    ) {
+        var delayTime = 1000L
+        repeat(maxRetries) { attempt ->
+            val result = startConnectionSuspend()
+            if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                Log.d("BillingManager", "Billing connected successfully on attempt #${attempt + 1}")
+                onReady()
+                return
+            } else {
+                Log.e(
+                    "BillingManager",
+                    "Billing setup failed (attempt ${attempt + 1}): ${result.debugMessage}"
+                )
+            }
+            delay(delayTime)
+            delayTime *= 2
+        }
+    }
+
+    private suspend fun startConnectionSuspend(): BillingResult =
+        suspendCancellableCoroutine { cont ->
+            billingClient.startConnection(object : BillingClientStateListener {
+                override fun onBillingSetupFinished(result: BillingResult) {
+                    cont.resume(result)
+                }
+
+                override fun onBillingServiceDisconnected() {
+                    Log.w("BillingManager", "Billing service disconnected.")
+                }
+            })
+        }
+
+    // Query product details.
     fun queryProduct(productId: String) {
         if (!billingClient.isReady) {
             Log.w("BillingManager", "BillingClient is not ready yet.")
@@ -44,7 +80,7 @@ class BillingManager(
                 listOf(
                     QueryProductDetailsParams.Product.newBuilder()
                         .setProductId(productId)
-                        .setProductType(BillingClient.ProductType.SUBS) // Giả định là sub
+                        .setProductType(BillingClient.ProductType.SUBS)
                         .build()
                 )
             )
@@ -54,12 +90,10 @@ class BillingManager(
             if (result.responseCode == BillingClient.BillingResponseCode.OK &&
                 productDetailsList.isNotEmpty()
             ) {
-                onProductLoaded(productDetailsList[0]) // Gửi về UI
+                Log.d("CheckThreadchinh", Thread.currentThread().name.toString())
+                onProductLoaded(productDetailsList[0])
             } else {
-                Log.e(
-                    "BillingManager",
-                    "Query product failed: ${result.debugMessage}, responseCode=${result.responseCode}"
-                )
+                onFailed()
             }
         }
     }
@@ -108,55 +142,49 @@ class BillingManager(
     }
 
     private fun logProductDetails(product: ProductDetails) {
-        val sb = StringBuilder()
-        sb.appendLine("+) ProductDetails:")
-        sb.appendLine(" • productId = ${product.productId}")
-        sb.appendLine(" • productType = ${product.productType}")
-        sb.appendLine(" • title = ${product.title}")
-        sb.appendLine(" • name = ${product.name}")
-        sb.appendLine(" • description = ${product.description}")
+        Log.d("BillingManager", "+) ProductDetails:")
+        Log.d("BillingManager", " • productId = ${product.productId}")
+        Log.d("BillingManager", " • productType = ${product.productType}")
+        Log.d("BillingManager", " • title = ${product.title}")
+        Log.d("BillingManager", " • name = ${product.name}")
+        Log.d("BillingManager", " • description = ${product.description}")
 
         product.oneTimePurchaseOfferDetails?.let {
-            sb.appendLine(formatOneTimeOffer(it))
+            logOneTimeOffer(it)
         }
 
         product.subscriptionOfferDetails?.let {
-            sb.appendLine(formatSubscriptionOffers(it))
+            logSubscriptionOffers(it)
         }
-
-        Log.d("BillingManager", sb.toString())
     }
 
-    private fun formatOneTimeOffer(offer: ProductDetails.OneTimePurchaseOfferDetails): String =
-        buildString {
-            appendLine(" OneTimePurchaseOfferDetails:")
-            appendLine("   - priceCurrencyCode = ${offer.priceCurrencyCode}")
-            appendLine("   - formattedPrice = ${offer.formattedPrice}")
-        }
+    private fun logOneTimeOffer(offer: ProductDetails.OneTimePurchaseOfferDetails) {
+        Log.d("BillingManager", " OneTimePurchaseOfferDetails:")
+        Log.d("BillingManager", "   - priceCurrencyCode = ${offer.priceCurrencyCode}")
+        Log.d("BillingManager", "   - formattedPrice = ${offer.formattedPrice}")
+    }
 
-    private fun formatSubscriptionOffers(offers: List<ProductDetails.SubscriptionOfferDetails>): String =
-        buildString {
-            appendLine(" SubscriptionOfferDetails (${offers.size}):")
-            offers.forEach { offer ->
-                appendLine("   Offer ID: ${offer.offerId ?: "N/A"}")
-                appendLine("   - basePlanId = ${offer.basePlanId}")
-                appendLine("   - offerTags = ${offer.offerTags}")
-                appendLine("   - offerIdToken = ${offer.offerToken}")
+    private fun logSubscriptionOffers(offers: List<ProductDetails.SubscriptionOfferDetails>) {
+        Log.d("BillingManager", " SubscriptionOfferDetails (${offers.size}):")
+        offers.forEach { offer ->
+            Log.d("BillingManager", "   Offer ID: ${offer.offerId ?: "N/A"}")
+            Log.d("BillingManager", "   - basePlanId = ${offer.basePlanId}")
+            Log.d("BillingManager", "   - offerTags = ${offer.offerTags}")
+            Log.d("BillingManager", "   - offerIdToken = ${offer.offerToken}")
 
-                offer.pricingPhases.pricingPhaseList.forEachIndexed { index, phase ->
-                    appendLine(formatPricingPhase(index, phase))
-                }
+            offer.pricingPhases.pricingPhaseList.forEachIndexed { index, phase ->
+                logPricingPhase(index, phase)
             }
         }
+    }
 
-    private fun formatPricingPhase(index: Int, phase: ProductDetails.PricingPhase): String =
-        buildString {
-            appendLine("     Phase ${index + 1}:")
-            appendLine("       • price = ${phase.formattedPrice}")
-            appendLine("       • currencyCode = ${phase.priceCurrencyCode}")
-            appendLine("       • billingPeriod = ${phase.billingPeriod}")
-            appendLine("       • cycles = ${phase.billingCycleCount}")
-            appendLine("       • recurrence = ${phase.recurrenceMode}")
-        }
+    private fun logPricingPhase(index: Int, phase: ProductDetails.PricingPhase) {
+        Log.d("BillingManager", "     Phase ${index + 1}:")
+        Log.d("BillingManager", "       • price = ${phase.formattedPrice}")
+        Log.d("BillingManager", "       • currencyCode = ${phase.priceCurrencyCode}")
+        Log.d("BillingManager", "       • billingPeriod = ${phase.billingPeriod}")
+        Log.d("BillingManager", "       • cycles = ${phase.billingCycleCount}")
+        Log.d("BillingManager", "       • recurrence = ${phase.recurrenceMode}")
+    }
 
 }

@@ -3,7 +3,6 @@ package com.eco.musicplayer.audioplayer.music.paywall.demobilling.ui
 import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +15,6 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class PaywallSale50WeeklyActivity : AppCompatActivity() {
@@ -33,12 +31,23 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
         productId = intent.getStringExtra("productId") ?: ""
         offerId = intent.getStringExtra("offerId") ?: ""
 
-        Log.d("PaywallSale50Weekly", "Received productId=$productId, offerId=$offerId")
-
         setupUI()
 
-        billingManager =
-            BillingManager(this) { productDetails -> handleProductDetails(productDetails) }
+        billingManager = BillingManager(
+            this,
+            lifecycleScope,
+            onProductLoaded = { productDetails ->
+                handleProductDetails(productDetails)
+            },
+            onFailed = {
+                showErrorState()
+            }
+        )
+
+        billingManager.startConnection {
+            billingManager.logAllProducts()
+            billingManager.queryProduct(productId)
+        }
     }
 
     private fun handleProductDetails(productDetails: ProductDetails) {
@@ -119,12 +128,15 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     private fun setupListeners() = with(binding) {
         btnClose.setOnClickListener { finish() }
 
+        // hiệu ứng loading mặc định ban đầu
         showLoadingStateFirst()
-        simulateLoadingFirst()
 
         btnTryAgain.setOnClickListener {
             showLoadingStateSecondary()
-            simulateLoadingSecondary()
+            billingManager.startConnection {
+//                billingManager.logAllProducts()
+                billingManager.queryProduct(productId)
+            }
         }
     }
 
@@ -141,22 +153,32 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
     }
 
     private fun showLoadingStateSecondary() = with(binding) {
-        btnClaimOffer.visibility = View.VISIBLE
+        btnClaimOffer.apply {
+            text = ""
+            isEnabled = false
+            visibility = View.VISIBLE
+        }
+        txtTileError.visibility = View.GONE
         pbClaimOffer.visibility = View.VISIBLE
         blockContent.visibility = View.INVISIBLE
         txtPriceDescription.visibility = View.INVISIBLE
-        txtTileError.visibility = View.GONE
         btnTryAgain.visibility = View.GONE
         shimmerBlock.showAndStart()
     }
 
-    private fun showErrorState() = with(binding) {
-        shimmerBlock.visibility = View.GONE
-        btnClaimOffer.visibility = View.INVISIBLE
-        txtPriceDescription.visibility = View.INVISIBLE
-        txtTileError.visibility = View.VISIBLE
-        pbClaimOffer.visibility = View.GONE
-        btnTryAgain.visibility = View.VISIBLE
+
+    private fun showErrorState() {
+        lifecycleScope.launch(Dispatchers.Main) {
+            with(binding) {
+                binding.shimmerBlock.stopShimmer()
+                shimmerBlock.visibility = View.GONE
+                btnClaimOffer.visibility = View.INVISIBLE
+                txtPriceDescription.visibility = View.INVISIBLE
+                txtTileError.visibility = View.VISIBLE
+                pbClaimOffer.visibility = View.GONE
+                btnTryAgain.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun showSuccessState() = with(binding) {
@@ -167,21 +189,6 @@ class PaywallSale50WeeklyActivity : AppCompatActivity() {
         txtOffBadge.visibility = View.VISIBLE
         blockContent.visibility = View.VISIBLE
         txtPriceDescription.visibility = View.VISIBLE
-    }
-
-    private fun simulateLoadingFirst() = lifecycleScope.launch {
-        delay(2500)
-        binding.shimmerBlock.stopShimmer()
-        showErrorState()
-    }
-
-    private fun simulateLoadingSecondary() {
-        billingManager.startConnection {
-            // log tất cả sản phẩm
-            billingManager.logAllProducts()
-
-            billingManager.queryProduct(productId)
-        }
     }
 
     private fun View.showAndStart() {
